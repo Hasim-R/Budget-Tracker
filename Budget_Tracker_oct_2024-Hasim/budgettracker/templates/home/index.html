@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Budget Tracker</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#">Dashboard</a>
+        <a href="#">Transactions</a>
+        <a href="#">Budgets</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Dashboard Overview -->
+        <section class="dashboard">
+            <h2>Dashboard Overview</h2>
+            <div class="budget-overview">
+                <span><strong>Total Income:</strong> $5000</span>
+                <span><strong>Total Expense:</strong> </span>
+                <span><strong>Remaining Budget:</strong> </span>
+            </div>
+        </section>
+
+        <!-- Add Transaction Form -->
+        <section class="add-transaction">
+            <h2>Add Transaction</h2>
+            <form action="#" method="POST">
+                <input type="text" name="description" placeholder="Description" required>
+                <input type="number" name="amount" placeholder="Amount" required>
+                <select name="type" required>
+                    <option value="" disabled selected>Type</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <select name="category" required>
+                    <option value="" disabled selected>Category</option>
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="savings">Savings</option>
+                    <option value="other">Other</option>
+                </select>
+                <button type="submit">Add Transaction</button>
+            </form>
+        </section>
+
+        <!-- Recent Transactions Table -->
+        <section class="transactions">
+            <h2>Recent Transactions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Placeholder row for transactions -->
+                    <tr>
+                        <td>Salary</td>
+                        <td>$4000</td>
+                        <td>Income</td>
+                        <td>Savings</td>
+                        <td>2024-10-20</td>
+                    </tr>
+                    <tr>
+                        <td>Groceries</td>
+                        <td>$150</td>
+                        <td>Expense</td>
+                        <td>Food</td>
+                        <td>2024-10-19</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+
+</body>
+
+</html>

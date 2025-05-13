@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/chart-data.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Financial Dashboard</h1>
+    </header>
+
+    <main class="container">
+        <section class="chart-section">
+            <h2>Income vs Expense Over Time</h2>
+            <canvas id="lineChart"></canvas>
+        </section>
+
+        <section class="chart-section">
+            <h2>Budget Utilization by Category</h2>
+            <canvas id="barChart"></canvas>
+        </section>
+
+        <section class="chart-section">
+            <h2>Category-wise Spending</h2>
+            <canvas id="pieChart"></canvas>
+        </section>
+    </main>
+
+    <script>
+        // Fetch the data from the API
+        fetch('/api/chart-data/')
+            .then(response => response.json())
+            .then(data => {
+                // Line Chart (Income vs Expense)
+                const incomeData = data.income_data.map(item => ({ x: item.date, y: item.total }));
+                const expenseData = data.expense_data.map(item => ({ x: item.date, y: item.total }));
+
+                const lineChartCtx = document.getElementById('lineChart').getContext('2d');
+                new Chart(lineChartCtx, {
+                    type: 'line',
+                    data: {
+                        datasets: [
+                            {
+                                label: 'Income',
+                                data: incomeData,
+                                borderColor: 'green',
+                                fill: false,
+                            },
+                            {
+                                label: 'Expense',
+                                data: expenseData,
+                                borderColor: 'red',
+                                fill: false,
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: { type: 'time', time: { unit: 'day' } },
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+
+                // Bar Chart (Budget Utilization)
+                const budgetCategories = data.budget_data.map(item => item.category__name);
+                const budgetLimits = data.budget_data.map(item => item.limit);
+                const expensesByCategory = data.expense_by_category.map(item => item.total);
+
+                const barChartCtx = document.getElementById('barChart').getContext('2d');
+                new Chart(barChartCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: budgetCategories,
+                        datasets: [
+                            {
+                                label: 'Budget Limit',
+                                data: budgetLimits,
+                                backgroundColor: 'blue'
+                            },
+                            {
+                                label: 'Expense',
+                                data: expensesByCategory,
+                                backgroundColor: 'orange'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+
+                // Pie Chart (Category-wise Spending)
+                const pieCategories = data.category_spending.map(item => item.category__name);
+                const pieAmounts = data.category_spending.map(item => item.total);
+
+                const pieChartCtx = document.getElementById('pieChart').getContext('2d');
+                new Chart(pieChartCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: pieCategories,
+                        datasets: [{
+                            data: pieAmounts,
+                            backgroundColor: ['red', 'blue', 'green', 'yellow', 'purple', 'orange']
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching chart data:', error));
+    </script>
+</body>
+</html>
