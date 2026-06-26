@@ -160,5 +160,3 @@ myapp/
 This project is open source and available for educational and personal use. Add a license file (e.g. MIT) if you plan to distribute it publicly.
 
 ---
-
-*Built with ❤️ to make personal finance management simple.*
