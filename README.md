@@ -1,4 +1,4 @@
-# 💰 Budget Tracker
+#  Budget Tracker
 
 A web-based personal finance management application that helps individuals and households track income, expenses, EMIs, and budgets — with rich reporting, charts, and email alerts to support smarter financial decisions.
 
@@ -6,7 +6,7 @@ Built with **Django**, **MySQL**, **HTML/CSS**, and a documented **REST API** (v
 
 ---
 
-## 📌 Overview
+##  Overview
 
 Budget Tracker gives users a centralized platform to:
 
@@ -20,7 +20,7 @@ The goal is simple: make it easy to see where your money goes, plan ahead, and s
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 | Feature | Description |
 |---|---|
@@ -34,7 +34,7 @@ The goal is simple: make it easy to see where your money goes, plan ahead, and s
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Backend:** Django 4.2, Django REST Framework
 - **Database:** MySQL
@@ -44,7 +44,7 @@ The goal is simple: make it easy to see where your money goes, plan ahead, and s
 
 ---
 
-## 🏗️ How It Works
+##  How It Works
 
 ```
 User Input → Data Storage (MySQL) → Backend Processing → Visualization (Charts/Reports)
@@ -136,7 +136,7 @@ myapp/
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
 - 📱 Mobile app integration
 - 💱 Multi-currency support
